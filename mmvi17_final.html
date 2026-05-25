@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring 2026: Angel's MMVI Final</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #2b2b2b;
+      color: #ffffff;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      padding: 0 0 80px 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 60px 40px 50px;
+      border-bottom: 1px solid #444;
+    }
+    header h1 { font-size: 2.8em; font-weight: 700; margin-bottom: 0.25em; }
+    header .subtitle { font-size: 1.4em; color: #999; }
+
+    /* ── SECTION ── */
+    section {
+      max-width: 1100px;
+      margin: 60px auto 0;
+      padding: 0 40px;
+    }
+    section h2 {
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #cccccc;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.4em;
+      margin-bottom: 1.4em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    section h2 span {
+      font-size: 0.6em;
+      font-weight: 400;
+      color: #666;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ── LINKS ── */
+    a { color: inherit; }
+
+    .btn {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.75; }
+    .btn-view     { background: #3a3a3a; border: 1px solid #666; color: #ccc; }
+    .btn-download { background: #2a4a2a; border: 1px solid #4a8a4a; color: #8dcc8d; margin-left: 5px; }
+
+    /* ── VIDEOS ── */
+    .videos-row {
+      display: flex;
+      gap: 70px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      min-width: 130px;
+    }
+    .video-item.disabled { pointer-events: none; opacity: 0.3; }
+    .video-item:not(.disabled):hover .num { opacity: 0.72; }
+    .num { font-size: 6em; font-weight: 900; line-height: 1; transition: opacity 0.2s; }
+    .num-1 { color: #ff2222; }
+    .num-2 { color: #00ee00; }
+    .num-3 { color: #6699cc; }
+    .vid-label { font-size: 0.9em; color: #bbb; margin-top: 0.5em; text-align: center; }
+    .vid-note  { font-size: 0.78em; color: #666; margin-top: 0.2em; text-align: center; }
+    .vid-btns  { margin-top: 0.6em; }
+
+    /* ── PHOTO GRID ── */
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+    .photo-card {
+      background: #333;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .photo-card .thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: #3a3a3a;
+    }
+    .photo-card .thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #3a3a3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 1.8em;
+    }
+    .photo-card .card-info {
+      padding: 8px 10px 10px;
+    }
+    .photo-card .fname {
+      font-size: 0.72em;
+      color: #888;
+      margin-bottom: 6px;
+      word-break: break-all;
+    }
+
+    /* ── THUMBNAILS ── */
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+    .thumb-card {
+      background: #333;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .thumb-card .thumb {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+      background: #3a3a3a;
+    }
+    .thumb-card .card-info {
+      padding: 8px 10px 10px;
+    }
+    .thumb-card .fname {
+      font-size: 0.7em;
+      color: #888;
+      margin-bottom: 6px;
+      word-break: break-all;
+    }
+
+    /* ── CLIPS TABLE ── */
+    .clips-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .clips-table tr {
+      border-bottom: 1px solid #383838;
+    }
+    .clips-table tr:hover td { background: #323232; }
+    .clips-table td {
+      padding: 10px 12px;
+      font-size: 0.88em;
+      vertical-align: middle;
+    }
+    .clips-table .clip-name { color: #bbb; }
+    .clips-table .clip-actions { text-align: right; white-space: nowrap; }
+    .clips-table .clip-icon { color: #555; font-size: 1.1em; margin-right: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      margin-top: 70px;
+      color: #555;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Spring 2026: Angel's MMVI Content</h1>
+  <p class="subtitle">Professor Rachel Mercy Simpson &nbsp;·&nbsp; Berkeley City College</p>
+</header>
+
+
+<!-- ══════════════════════════════════
+     VIDEOS
+══════════════════════════════════ -->
+<section>
+  <h2>Videos <span>· Final Edits</span></h2>
+  <div class="videos-row">
+
+    <div class="video-item">
+      <a href="2026/gradinterview/Grad_Interview_Edit_Full.mp4" target="_blank" style="text-decoration:none;">
+        <span class="num num-1">1</span>
+      </a>
+      <span class="vid-label">Grad Interview — Full</span>
+      <span class="vid-note">Final Edit · Full Resolution</span>
+      <div class="vid-btns">
+        <a class="btn btn-view"     href="2026/gradinterview/Grad_Interview_Edit_Full.mp4" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/gradinterview/Grad_Interview_Edit_Full.mp4" download>Download</a>
+      </div>
+    </div>
+
+    <div class="video-item disabled">
+      <span class="num num-2">2</span>
+      <span class="vid-label">Coming Soon</span>
+      <span class="vid-note">Link pending</span>
+    </div>
+
+    <div class="video-item disabled">
+      <span class="num num-3">3</span>
+      <span class="vid-label">Coming Soon</span>
+      <span class="vid-note">Link pending</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     PHOTOS / STILLS
+══════════════════════════════════ -->
+<section>
+  <h2>Photos / Stills <span>· 12+ Required</span></h2>
+  <div class="photos-grid">
+
+    <!-- 01 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/01-bcc-2026.jpg" alt="01-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">01-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="2026/stills/01-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/01-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/02-bcc-2026.jpg" alt="02-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">02-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="2026/stills/02-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/02-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/03-bcc-2026.jpg" alt="03-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">03-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="2026/stills/03-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/03-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/05-bcc-2026.jpg" alt="05-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">05-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="2026/stills/05-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/05-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/06-bcc-2026.jpg" alt="06-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">06-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="2026/stills/06-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/06-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/07-bcc-2026.png" alt="07-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">07-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/07-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/07-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/08-bcc-2026.png" alt="08-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">08-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/08-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/08-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/09-bcc-2026.png" alt="09-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">09-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/09-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/09-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/10-bcc-2026.png" alt="10-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">10-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/10-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/10-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/11-bcc-2026.png" alt="11-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">11-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/11-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/11-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="photo-card">
+      <img class="thumb" src="2026/stills/12-bcc-2026.png" alt="12-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">12-bcc-2026.png</div>
+        <a class="btn btn-view"     href="2026/stills/12-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/stills/12-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+
+  </div>
+  <p style="font-size:0.78em;color:#666;margin-top:12px;font-style:italic;">Note: 04-bcc-2026 not found in folder — 11 of 12 slots filled.</p>
+</section>
+
+
+<!-- ══════════════════════════════════
+     THUMBNAILS
+══════════════════════════════════ -->
+<section>
+  <h2>Thumbnails <span>· With Text Hook · 4 Required</span></h2>
+  <div class="thumbs-grid">
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/3-Graduation-01.png" alt="3-Graduation-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">3-Graduation-01.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/3-Graduation-01.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/3-Graduation-01.png" download>Download</a>
+      </div>
+    </div>
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/bcc-east-west.png" alt="bcc-east-west" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-east-west.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/bcc-east-west.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/bcc-east-west.png" download>Download</a>
+      </div>
+    </div>
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/Kali-Saleem-01.png" alt="Kali-Saleem-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">Kali-Saleem-01.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/Kali-Saleem-01.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/Kali-Saleem-01.png" download>Download</a>
+      </div>
+    </div>
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/Kaliu-Solo-01.png" alt="Kaliu-Solo-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">Kaliu-Solo-01.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/Kaliu-Solo-01.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/Kaliu-Solo-01.png" download>Download</a>
+      </div>
+    </div>
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/Saleem-Kali-01.png" alt="Saleem-Kali-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">Saleem-Kali-01.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/Saleem-Kali-01.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/Saleem-Kali-01.png" download>Download</a>
+      </div>
+    </div>
+
+    <div class="thumb-card">
+      <img class="thumb" src="2026/thumbnails/Saleem-Solo-01.png" alt="Saleem-Solo-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">Saleem-Solo-01.png</div>
+        <a class="btn btn-view"     href="2026/thumbnails/Saleem-Solo-01.png" target="_blank">View</a>
+        <a class="btn btn-download" href="2026/thumbnails/Saleem-Solo-01.png" download>Download</a>
+      </div>
+    </div>
+
+  </div>
+  <p style="font-size:0.78em;color:#666;margin-top:12px;font-style:italic;">Note: Saleem-Kali-01 had no extension shown — assumed .png. Update if different.</p>
+</section>
+
+
+<!-- ══════════════════════════════════
+     CLIPS ARCHIVE
+══════════════════════════════════ -->
+<section>
+  <h2>Clips Archive <span>· Raw Footage · 18 Files</span></h2>
+  <table class="clips-table">
+    <tbody>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">atrium-01.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/atrium-01.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/atrium-01.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">atrium-02.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/atrium-02.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/atrium-02.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">atrium-03.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/atrium-03.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/atrium-03.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">bcc-sign-01.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/bcc-sign-01.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/bcc-sign-01.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">bcc-sign-02.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/bcc-sign-02.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/bcc-sign-02.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">front-01.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/front-01.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/front-01.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">front-02.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/front-02.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/front-02.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">front-03.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/front-03.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/front-03.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">front-04.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/front-04.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/front-04.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">lrc-01.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/lrc-01.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/lrc-01.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">MAIN BCC Logo Anime.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/MAIN BCC Logo Anime.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/MAIN BCC Logo Anime.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">new-bcc-03.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/new-bcc-03.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/new-bcc-03.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">new-bcc-04.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/new-bcc-04.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/new-bcc-04.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">new-bcc-05.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/new-bcc-05.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/new-bcc-05.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">new-bcc-06.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/new-bcc-06.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/new-bcc-06.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">new-bcc-07.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/new-bcc-07.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/new-bcc-07.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">studio-01.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/studio-01.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/studio-01.mp4" download>Download</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><span class="clip-icon">▶</span><span class="clip-name">studio-02.mp4</span></td>
+        <td class="clip-actions">
+          <a class="btn btn-view"     href="2026/clips/studio-02.mp4" target="_blank">View</a>
+          <a class="btn btn-download" href="2026/clips/studio-02.mp4" download>Download</a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+
+<footer>
+  MMVI17 &nbsp;·&nbsp; Spring 2026 &nbsp;·&nbsp; Berkeley City College
+</footer>
+
+</body>
+</html>

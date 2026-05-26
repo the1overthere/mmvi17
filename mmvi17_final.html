@@ -71,9 +71,7 @@
       align-items: flex-start;
       flex-wrap: wrap;
     }
-    .video-poster {
-      flex: 0 0 auto;
-    }
+    .video-poster { flex: 0 0 auto; }
     .video-poster img {
       width: 160px;
       border-radius: 8px;
@@ -116,7 +114,45 @@
     .vid-note  { font-size: 0.74em; color: #666; margin-top: 0.2em; text-align: center; }
     .vid-btns  { margin-top: 0.6em; }
 
-    /* ── PHOTO GRID ── */
+    /* ── THUMBNAILS (portrait 9:16) ── */
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+    .thumb-card {
+      background: #333;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .thumb-card .thumb {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+      background: #3a3a3a;
+    }
+    .thumb-card .thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: #3a3a3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 1.8em;
+    }
+    .thumb-card .card-info { padding: 8px 10px 10px; }
+    .thumb-card .fname {
+      font-size: 0.7em;
+      color: #888;
+      margin-bottom: 6px;
+      word-break: break-all;
+    }
+
+    /* ── PHOTO GRID (landscape 4:3) ── */
     .photos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -146,9 +182,7 @@
       color: #555;
       font-size: 1.8em;
     }
-    .photo-card .card-info {
-      padding: 8px 10px 10px;
-    }
+    .photo-card .card-info { padding: 8px 10px 10px; }
     .photo-card .fname {
       font-size: 0.72em;
       color: #888;
@@ -156,31 +190,42 @@
       word-break: break-all;
     }
 
-    /* ── THUMBNAILS ── */
-    .thumbs-grid {
+    /* ── YOUTUBE SHORTS CARDS ── */
+    .yt-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 14px;
     }
-    .thumb-card {
+    .yt-card {
       background: #333;
       border-radius: 6px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
-    .thumb-card .thumb {
+    .yt-card a { display: block; }
+    .yt-card .yt-thumb {
       width: 100%;
-      aspect-ratio: 9/16;
+      aspect-ratio: 16/9;
       object-fit: cover;
       display: block;
       background: #3a3a3a;
+      transition: opacity 0.15s;
     }
-    .thumb-card .card-info {
-      padding: 8px 10px 10px;
+    .yt-card a:hover .yt-thumb { opacity: 0.8; }
+    .yt-card .yt-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #3a3a3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 0.9em;
     }
-    .thumb-card .fname {
-      font-size: 0.7em;
+    .yt-card .card-info { padding: 8px 10px 10px; }
+    .yt-card .fname {
+      font-size: 0.72em;
       color: #888;
       margin-bottom: 6px;
       word-break: break-all;
@@ -201,15 +246,12 @@
     }
     .clip-card video {
       width: 100%;
-      max-width: 160px;
       aspect-ratio: 16/9;
       object-fit: cover;
       display: block;
       background: #222;
     }
-    .clip-card .card-info {
-      padding: 8px 10px 10px;
-    }
+    .clip-card .card-info { padding: 8px 10px 10px; }
     .clip-card .fname {
       font-size: 0.72em;
       color: #888;
@@ -235,20 +277,18 @@
 
 
 <!-- ══════════════════════════════════
-     VIDEOS
+     VIDEOS — GRAD INTERVIEW
 ══════════════════════════════════ -->
 <section>
   <h2>Videos <span>· Final Edits · Grad Interview</span></h2>
   <div class="videos-section">
 
-    <!-- Poster thumbnail -->
     <div class="video-poster">
       <img src="images/2026-grad-video.png" alt="Grad Interview thumbnail"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="poster-placeholder" style="display:none;">🎬 Thumbnail<br>coming soon</div>
     </div>
 
-    <!-- Quality links -->
     <div class="videos-row">
 
       <div class="video-item">
@@ -288,140 +328,6 @@
   </div>
 </section>
 
-
-<!-- ══════════════════════════════════
-     PHOTOS / STILLS
-══════════════════════════════════ -->
-<section>
-  <h2>Photos / Stills <span>· 12+ Required</span></h2>
-  <div class="photos-grid">
-
-    <!-- 01 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/01-bcc-2026.jpg" alt="01-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">01-bcc-2026.jpg</div>
-        <a class="btn btn-view"     href="stills/01-bcc-2026.jpg" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/01-bcc-2026.jpg" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 02 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/02-bcc-2026.jpg" alt="02-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">02-bcc-2026.jpg</div>
-        <a class="btn btn-view"     href="stills/02-bcc-2026.jpg" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/02-bcc-2026.jpg" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 03 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/03-bcc-2026.jpg" alt="03-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">03-bcc-2026.jpg</div>
-        <a class="btn btn-view"     href="stills/03-bcc-2026.jpg" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/03-bcc-2026.jpg" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 05 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/05-bcc-2026.jpg" alt="05-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">05-bcc-2026.jpg</div>
-        <a class="btn btn-view"     href="stills/05-bcc-2026.jpg" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/05-bcc-2026.jpg" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 06 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/06-bcc-2026.jpg" alt="06-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">06-bcc-2026.jpg</div>
-        <a class="btn btn-view"     href="stills/06-bcc-2026.jpg" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/06-bcc-2026.jpg" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 07 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/07-bcc-2026.png" alt="07-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">07-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/07-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/07-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 08 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/08-bcc-2026.png" alt="08-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">08-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/08-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/08-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 09 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/09-bcc-2026.png" alt="09-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">09-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/09-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/09-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 10 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/10-bcc-2026.png" alt="10-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">10-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/10-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/10-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 11 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/11-bcc-2026.png" alt="11-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">11-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/11-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/11-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-    <!-- 12 -->
-    <div class="photo-card">
-      <img class="thumb" src="stills/12-bcc-2026.png" alt="12-bcc-2026" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="thumb-placeholder" style="display:none;">🖼</div>
-      <div class="card-info">
-        <div class="fname">12-bcc-2026.png</div>
-        <a class="btn btn-view"     href="stills/12-bcc-2026.png" target="_blank">View</a>
-        <a class="btn btn-download" href="stills/12-bcc-2026.png" download>Download</a>
-      </div>
-    </div>
-
-  </div>
-  <p style="font-size:0.78em;color:#666;margin-top:12px;font-style:italic;">Note: 04-bcc-2026 not found in folder — 11 of 12 slots filled.</p>
-</section>
-
-
 <!-- ══════════════════════════════════
      THUMBNAILS
 ══════════════════════════════════ -->
@@ -430,7 +336,7 @@
   <div class="thumbs-grid">
 
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/3-Graduation-01.png" alt="3-Graduation-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/3-Graduation-01.png" alt="3-Graduation-01.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">3-Graduation-01.png</div>
@@ -438,9 +344,8 @@
         <a class="btn btn-download" href="thumbnails/3-Graduation-01.png" download>Download</a>
       </div>
     </div>
-
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/bcc-east-west.png" alt="bcc-east-west" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/bcc-east-west.png" alt="bcc-east-west.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">bcc-east-west.png</div>
@@ -448,9 +353,8 @@
         <a class="btn btn-download" href="thumbnails/bcc-east-west.png" download>Download</a>
       </div>
     </div>
-
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/Kali-Saleem-01.png" alt="Kali-Saleem-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/Kali-Saleem-01.png" alt="Kali-Saleem-01.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">Kali-Saleem-01.png</div>
@@ -458,9 +362,8 @@
         <a class="btn btn-download" href="thumbnails/Kali-Saleem-01.png" download>Download</a>
       </div>
     </div>
-
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/Kaliu-Solo-01.png" alt="Kaliu-Solo-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/Kaliu-Solo-01.png" alt="Kaliu-Solo-01.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">Kaliu-Solo-01.png</div>
@@ -468,9 +371,8 @@
         <a class="btn btn-download" href="thumbnails/Kaliu-Solo-01.png" download>Download</a>
       </div>
     </div>
-
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/Saleem-Kali-01.png" alt="Saleem-Kali-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/Saleem-Kali-01.png" alt="Saleem-Kali-01.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">Saleem-Kali-01.png</div>
@@ -478,9 +380,8 @@
         <a class="btn btn-download" href="thumbnails/Saleem-Kali-01.png" download>Download</a>
       </div>
     </div>
-
     <div class="thumb-card">
-      <img class="thumb" src="thumbnails/Saleem-Solo-01.png" alt="Saleem-Solo-01" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img class="thumb" src="thumbnails/Saleem-Solo-01.png" alt="Saleem-Solo-01.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="thumb-placeholder" style="display:none;">🖼</div>
       <div class="card-info">
         <div class="fname">Saleem-Solo-01.png</div>
@@ -488,17 +389,211 @@
         <a class="btn btn-download" href="thumbnails/Saleem-Solo-01.png" download>Download</a>
       </div>
     </div>
-
   </div>
-  <p style="font-size:0.78em;color:#666;margin-top:12px;font-style:italic;">Note: Saleem-Kali-01 had no extension shown — assumed .png. Update if different.</p>
 </section>
 
-
 <!-- ══════════════════════════════════
-     CLIPS ARCHIVE
+     12 COLOR CORRECTED STILLS
 ══════════════════════════════════ -->
 <section>
-  <h2>Clips Archive <span>· Raw Footage · 18 Files</span></h2>
+  <h2>12 Color Corrected Stills <span>· 12 Required</span></h2>
+  <div class="photos-grid">
+
+    <div class="photo-card">
+      <img class="thumb" src="stills/01-bcc-2026.jpg" alt="01-bcc-2026.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">01-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="stills/01-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/01-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/02-bcc-2026.jpg" alt="02-bcc-2026.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">02-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="stills/02-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/02-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/03-bcc-2026.jpg" alt="03-bcc-2026.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">03-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="stills/03-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/03-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/05-bcc-2026.jpg" alt="05-bcc-2026.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">05-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="stills/05-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/05-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/06-bcc-2026.jpg" alt="06-bcc-2026.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">06-bcc-2026.jpg</div>
+        <a class="btn btn-view"     href="stills/06-bcc-2026.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/06-bcc-2026.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/07-bcc-2026.png" alt="07-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">07-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/07-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/07-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/08-bcc-2026.png" alt="08-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">08-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/08-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/08-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/09-bcc-2026.png" alt="09-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">09-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/09-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/09-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/10-bcc-2026.png" alt="10-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">10-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/10-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/10-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/11-bcc-2026.png" alt="11-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">11-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/11-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/11-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/12-bcc-2026.png" alt="12-bcc-2026.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">12-bcc-2026.png</div>
+        <a class="btn btn-view"     href="stills/12-bcc-2026.png" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/12-bcc-2026.png" download>Download</a>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:0.78em;color:#666;margin-top:12px;font-style:italic;">Note: 04-bcc-2026 not found in folder — 11 of 12 slots filled.</p>
+</section>
+
+<!-- ══════════════════════════════════
+     BCC GRADUATION CLIPS
+══════════════════════════════════ -->
+<section>
+  <h2>BCC Graduation Clips <span>· YouTube Shorts · 7 Clips</span></h2>
+  <div class="yt-grid">
+
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/mvq7jbUjAZ0?feature=share" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/mvq7jbUjAZ0/mqdefault.jpg" alt="Kali-Intro"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Kali-Intro</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/mvq7jbUjAZ0?feature=share" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/XCxWeVoQ3Iw" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/XCxWeVoQ3Iw/mqdefault.jpg" alt="Kali-Supported"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Kali-Supported</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/XCxWeVoQ3Iw" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/YXQalsdu56w" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/YXQalsdu56w/mqdefault.jpg" alt="Saleem-LikesBCC"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Saleem-LikesBCC</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/YXQalsdu56w" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/Kk66yJDMpLA" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/Kk66yJDMpLA/mqdefault.jpg" alt="Saleem-LearnShots"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Saleem-LearnShots</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/Kk66yJDMpLA" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/CgSQCJVG2B4" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/CgSQCJVG2B4/mqdefault.jpg" alt="Saleem-Specialty"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Saleem-Specialty</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/CgSQCJVG2B4" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/XB4yK51HJ0I?feature=share" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/XB4yK51HJ0I/mqdefault.jpg" alt="Shout Out"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Shout Out</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/XB4yK51HJ0I?feature=share" target="_blank">Watch</a>
+      </div>
+    </div>
+    <div class="yt-card">
+      <a href="https://youtube.com/shorts/BnDpuptHImA" target="_blank">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/BnDpuptHImA/mqdefault.jpg" alt="Outro Goodbye"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="yt-placeholder" style="display:none;">▶ YouTube</div>
+      </a>
+      <div class="card-info">
+        <div class="fname">Outro Goodbye</div>
+        <a class="btn btn-view" href="https://youtube.com/shorts/BnDpuptHImA" target="_blank">Watch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     BCC CLIPS
+══════════════════════════════════ -->
+<section>
+  <h2>BCC Clips <span>· Raw Footage · 18 Files</span></h2>
   <div class="clips-grid">
 
     <div class="clip-card">
@@ -509,7 +604,6 @@
         <a class="btn btn-download" href="clips/atrium-01.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/atrium-02.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -518,7 +612,6 @@
         <a class="btn btn-download" href="clips/atrium-02.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/atrium-03.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -527,7 +620,6 @@
         <a class="btn btn-download" href="clips/atrium-03.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/bcc-sign-01.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -536,7 +628,6 @@
         <a class="btn btn-download" href="clips/bcc-sign-01.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/bcc-sign-02.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -545,7 +636,6 @@
         <a class="btn btn-download" href="clips/bcc-sign-02.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/front-01.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -554,7 +644,6 @@
         <a class="btn btn-download" href="clips/front-01.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/front-02.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -563,7 +652,6 @@
         <a class="btn btn-download" href="clips/front-02.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/front-03.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -572,7 +660,6 @@
         <a class="btn btn-download" href="clips/front-03.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/front-04.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -581,7 +668,6 @@
         <a class="btn btn-download" href="clips/front-04.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/lrc-01.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -590,7 +676,6 @@
         <a class="btn btn-download" href="clips/lrc-01.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/MAIN BCC Logo Anime.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -599,7 +684,6 @@
         <a class="btn btn-download" href="clips/MAIN BCC Logo Anime.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/new-bcc-03.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -608,7 +692,6 @@
         <a class="btn btn-download" href="clips/new-bcc-03.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/new-bcc-04.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -617,7 +700,6 @@
         <a class="btn btn-download" href="clips/new-bcc-04.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/new-bcc-05.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -626,7 +708,6 @@
         <a class="btn btn-download" href="clips/new-bcc-05.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/new-bcc-06.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -635,7 +716,6 @@
         <a class="btn btn-download" href="clips/new-bcc-06.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/new-bcc-07.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -644,7 +724,6 @@
         <a class="btn btn-download" href="clips/new-bcc-07.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/studio-01.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -653,7 +732,6 @@
         <a class="btn btn-download" href="clips/studio-01.mp4" download>Download</a>
       </div>
     </div>
-
     <div class="clip-card">
       <video src="clips/studio-02.mp4" preload="metadata" muted playsinline></video>
       <div class="card-info">
@@ -662,7 +740,1141 @@
         <a class="btn btn-download" href="clips/studio-02.mp4" download>Download</a>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- ══════════════════════════════════
+     PHOTOS / STILLS
+══════════════════════════════════ -->
+<section>
+  <h2>Photos / Stills <span>· Full Archive · 125 Images</span></h2>
+  <div class="photos-grid">
+
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_145846.jpg" alt="20260320_145846.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_145846.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_145846.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_145846.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_145849.jpg" alt="20260320_145849.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_145849.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_145849.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_145849.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_145916.jpg" alt="20260320_145916.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_145916.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_145916.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_145916.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_145921.jpg" alt="20260320_145921.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_145921.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_145921.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_145921.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_145925.jpg" alt="20260320_145925.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_145925.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_145925.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_145925.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150135.jpg" alt="20260320_150135.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150135.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150135.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150135.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150208.jpg" alt="20260320_150208.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150208.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150208.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150208.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150217.jpg" alt="20260320_150217.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150217.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150217.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150217.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150221.jpg" alt="20260320_150221.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150221.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150221.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150221.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150230.jpg" alt="20260320_150230.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150230.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150230.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150230.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150527.jpg" alt="20260320_150527.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150527.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150527.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150527.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150544.jpg" alt="20260320_150544.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150544.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150544.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150544.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150550.jpg" alt="20260320_150550.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150550.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150550.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150550.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_150849.jpg" alt="20260320_150849.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_150849.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_150849.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_150849.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151056.jpg" alt="20260320_151056.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151056.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151056.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151056.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151106.jpg" alt="20260320_151106.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151106.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151106.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151106.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151108.jpg" alt="20260320_151108.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151108.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151108.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151108.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151143.jpg" alt="20260320_151143.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151143.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151143.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151143.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151809.jpg" alt="20260320_151809.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151809.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151809.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151809.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151822.jpg" alt="20260320_151822.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151822.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151822.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151822.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151842.jpg" alt="20260320_151842.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151842.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151842.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151842.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151845.jpg" alt="20260320_151845.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151845.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151845.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151845.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151910.jpg" alt="20260320_151910.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151910.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151910.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151910.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151919.jpg" alt="20260320_151919.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151919.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151919.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151919.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151923.jpg" alt="20260320_151923.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151923.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151923.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151923.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151936.jpg" alt="20260320_151936.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151936.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151936.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151936.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151938.jpg" alt="20260320_151938.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151938.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151938.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151938.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_151948.jpg" alt="20260320_151948.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_151948.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_151948.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_151948.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152003.jpg" alt="20260320_152003.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152003.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152003.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152003.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152007.jpg" alt="20260320_152007.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152007.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152007.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152007.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152018.jpg" alt="20260320_152018.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152018.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152018.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152018.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152032.jpg" alt="20260320_152032.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152032.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152032.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152032.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152045.jpg" alt="20260320_152045.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152045.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152045.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152045.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152107.jpg" alt="20260320_152107.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152107.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152107.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152107.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152117.jpg" alt="20260320_152117.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152117.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152117.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152117.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152148.jpg" alt="20260320_152148.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152148.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152148.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152148.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152200.jpg" alt="20260320_152200.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152200.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152200.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152200.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152210.jpg" alt="20260320_152210.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152210.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152210.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152210.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152211.jpg" alt="20260320_152211.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152211.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152211.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152211.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152212.jpg" alt="20260320_152212.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152212.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152212.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152212.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152220.jpg" alt="20260320_152220.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152220.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152220.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152220.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152256.jpg" alt="20260320_152256.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152256.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152256.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152256.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152302.jpg" alt="20260320_152302.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152302.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152302.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152302.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152307.jpg" alt="20260320_152307.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152307.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152307.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152307.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152335.jpg" alt="20260320_152335.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152335.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152335.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152335.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152339.jpg" alt="20260320_152339.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152339.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152339.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152339.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152342.jpg" alt="20260320_152342.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152342.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152342.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152342.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152409.jpg" alt="20260320_152409.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152409.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152409.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152409.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152435.jpg" alt="20260320_152435.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152435.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152435.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152435.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152458.jpg" alt="20260320_152458.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152458.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152458.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152458.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152504.jpg" alt="20260320_152504.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152504.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152504.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152504.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152702.jpg" alt="20260320_152702.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152702.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152702.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152702.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152704.jpg" alt="20260320_152704.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152704.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152704.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152704.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152705.jpg" alt="20260320_152705.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152705.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152705.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152705.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152713.jpg" alt="20260320_152713.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152713.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152713.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152713.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152740.jpg" alt="20260320_152740.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152740.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152740.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152740.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_152910.jpg" alt="20260320_152910.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_152910.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_152910.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_152910.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_153902.jpg" alt="20260320_153902.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_153902.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_153902.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_153902.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_153946.jpg" alt="20260320_153946.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_153946.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_153946.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_153946.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_153951.jpg" alt="20260320_153951.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_153951.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_153951.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_153951.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154000.jpg" alt="20260320_154000.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154000.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154000.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154000.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154036.jpg" alt="20260320_154036.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154036.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154036.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154036.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154053.jpg" alt="20260320_154053.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154053.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154053.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154053.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154056.jpg" alt="20260320_154056.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154056.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154056.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154056.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154103.jpg" alt="20260320_154103.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154103.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154103.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154103.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154111.jpg" alt="20260320_154111.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154111.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154111.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154111.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154246.jpg" alt="20260320_154246.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154246.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154246.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154246.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154251.jpg" alt="20260320_154251.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154251.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154251.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154251.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154256(0).jpg" alt="20260320_154256(0).jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154256(0).jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154256(0).jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154256(0).jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154256.jpg" alt="20260320_154256.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154256.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154256.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154256.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154312.jpg" alt="20260320_154312.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154312.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154312.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154312.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154349.jpg" alt="20260320_154349.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154349.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154349.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154349.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154420.jpg" alt="20260320_154420.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154420.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154420.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154420.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154421.jpg" alt="20260320_154421.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154421.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154421.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154421.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154439.jpg" alt="20260320_154439.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154439.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154439.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154439.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154443.jpg" alt="20260320_154443.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154443.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154443.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154443.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154457.jpg" alt="20260320_154457.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154457.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154457.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154457.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154500.jpg" alt="20260320_154500.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154500.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154500.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154500.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154526.jpg" alt="20260320_154526.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154526.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154526.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154526.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154544.jpg" alt="20260320_154544.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154544.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154544.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154544.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154547.jpg" alt="20260320_154547.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154547.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154547.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154547.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154612.jpg" alt="20260320_154612.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154612.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154612.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154612.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154617.jpg" alt="20260320_154617.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154617.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154617.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154617.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154620.jpg" alt="20260320_154620.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154620.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154620.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154620.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154716.jpg" alt="20260320_154716.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154716.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154716.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154716.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154722.jpg" alt="20260320_154722.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154722.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154722.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154722.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154725.jpg" alt="20260320_154725.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154725.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154725.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154725.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154733.jpg" alt="20260320_154733.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154733.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154733.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154733.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154736.jpg" alt="20260320_154736.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154736.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154736.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154736.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154802.jpg" alt="20260320_154802.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154802.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154802.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154802.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154832.jpg" alt="20260320_154832.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154832.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154832.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154832.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154840.jpg" alt="20260320_154840.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154840.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154840.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154840.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154845.jpg" alt="20260320_154845.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154845.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154845.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154845.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154848.jpg" alt="20260320_154848.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154848.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154848.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154848.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154854.jpg" alt="20260320_154854.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154854.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154854.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154854.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154856.jpg" alt="20260320_154856.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154856.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154856.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154856.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154902.jpg" alt="20260320_154902.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154902.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154902.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154902.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154904.jpg" alt="20260320_154904.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154904.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154904.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154904.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154921.jpg" alt="20260320_154921.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154921.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154921.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154921.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154923.jpg" alt="20260320_154923.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154923.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154923.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154923.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_154954.jpg" alt="20260320_154954.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_154954.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_154954.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_154954.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155056.jpg" alt="20260320_155056.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155056.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155056.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155056.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155057.jpg" alt="20260320_155057.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155057.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155057.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155057.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155129.jpg" alt="20260320_155129.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155129.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155129.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155129.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155205.jpg" alt="20260320_155205.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155205.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155205.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155205.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155215.jpg" alt="20260320_155215.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155215.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155215.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155215.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155221.jpg" alt="20260320_155221.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155221.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155221.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155221.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155223.jpg" alt="20260320_155223.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155223.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155223.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155223.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155251.jpg" alt="20260320_155251.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155251.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155251.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155251.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155253.jpg" alt="20260320_155253.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155253.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155253.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155253.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155254.jpg" alt="20260320_155254.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155254.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155254.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155254.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155255.jpg" alt="20260320_155255.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155255.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155255.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155255.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155314.jpg" alt="20260320_155314.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155314.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155314.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155314.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155401.jpg" alt="20260320_155401.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155401.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155401.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155401.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260320_155404.jpg" alt="20260320_155404.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260320_155404.jpg</div>
+        <a class="btn btn-view"     href="stills/20260320_155404.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260320_155404.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260325_142639.jpg" alt="20260325_142639.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260325_142639.jpg</div>
+        <a class="btn btn-view"     href="stills/20260325_142639.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260325_142639.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260325_142642.jpg" alt="20260325_142642.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260325_142642.jpg</div>
+        <a class="btn btn-view"     href="stills/20260325_142642.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260325_142642.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260325_175722.jpg" alt="20260325_175722.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260325_175722.jpg</div>
+        <a class="btn btn-view"     href="stills/20260325_175722.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260325_175722.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/20260325_175733.jpg" alt="20260325_175733.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">20260325_175733.jpg</div>
+        <a class="btn btn-view"     href="stills/20260325_175733.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/20260325_175733.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-new-01.jpg" alt="bcc-new-01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-new-01.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-new-01.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-new-01.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-new-02.jpg" alt="bcc-new-02.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-new-02.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-new-02.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-new-02.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-new-03.jpg" alt="bcc-new-03.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-new-03.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-new-03.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-new-03.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-west-street-01.jpg" alt="bcc-west-street-01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-west-street-01.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-west-street-01.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-west-street-01.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-west-street-02.jpg" alt="bcc-west-street-02.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-west-street-02.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-west-street-02.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-west-street-02.jpg" download>Download</a>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img class="thumb" src="stills/bcc-west-street-03.jpg" alt="bcc-west-street-03.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="thumb-placeholder" style="display:none;">🖼</div>
+      <div class="card-info">
+        <div class="fname">bcc-west-street-03.jpg</div>
+        <a class="btn btn-view"     href="stills/bcc-west-street-03.jpg" target="_blank">View</a>
+        <a class="btn btn-download" href="stills/bcc-west-street-03.jpg" download>Download</a>
+      </div>
+    </div>
   </div>
 </section>
 
